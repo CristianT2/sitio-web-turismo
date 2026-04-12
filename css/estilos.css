@@ -716,3 +716,93 @@ header {
     max-width: 400px;
     color: #333;
 }
+
+/* --- PUNTO 5: TABLA DE PRECIOS Y TOOLTIPS --- */
+
+.table-container {
+    overflow-x: auto; /* Para que sea responsiva en celulares */
+    margin-top: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.precios-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    text-align: left;
+}
+
+.precios-table th, 
+.precios-table td {
+    padding: 1.2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.precios-table th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+}
+
+/* 5.1 Efecto de resaltado al pasar el cursor (Hover) */
+.precios-table tbody tr {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: default;
+}
+
+.precios-table tbody tr:hover {
+    background-color: rgba(42, 157, 143, 0.1); /* Color primario muy suave */
+    transform: scale(1.01); /* Efecto sutil de crecimiento */
+}
+
+/* 5.2 Tooltips Explicativos (CSS-Only) */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    color: var(--primary-color);
+    cursor: help;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+/* El cuadro del mensaje */
+.tooltip::after {
+    content: attr(data-tooltip); /* Toma el texto del atributo HTML */
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 10;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* La flechita del tooltip */
+.tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #333;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+/* Mostrar al hacer hover */
+.tooltip:hover::after,
+.tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
