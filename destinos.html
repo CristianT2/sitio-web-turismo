@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1 class="section-title">Explora Jujuy</h1>
+
+        <div class="filter-system">
+            <input type="radio" name="region" id="todos" checked>
+            <input type="radio" name="region" id="quebrada">
+            <input type="radio" name="region" id="puna">
+            <input type="radio" name="region" id="yungas">
+
+            <div class="filter-labels">
+                <label for="todos">Todos</label>
+                <label for="quebrada">Quebrada</label>
+                <label for="puna">Puna</label>
+                <label for="yungas">Yungas</label>
+            </div>
+
+            <div class="masonry-grid">
+                <div class="dest-card quebrada tall">
+                    <img src="images/purmamarca.webp" alt="Purmamarca">
+                    <div class="dest-overlay">
+                        <h3>Purmamarca</h3>
+                        <p>Cerro de 7 Colores</p>
+                    </div>
+                </div>
+
+                <div class="dest-card puna">
+                    <img src="images/salinas.webp" alt="Salinas Grandes">
+                    <div class="dest-overlay">
+                        <h3>Salinas Grandes</h3>
+                        <p>Desierto Blanco</p>
+                    </div>
+                </div>
+
+                <div class="dest-card quebrada tall">
+                    <img src="images/hornocal.jpg" alt="Hornocal">
+                    <div class="dest-overlay">
+                        <h3>El Hornocal</h3>
+                        <p>Serranías del Catorce</p>
+                    </div>
+                </div>
+
+                <div class="dest-card yungas">
+                    <img src="images/parque-nacional-calilegua.webp" alt="Yungas">
+                    <div class="dest-overlay">
+                        <h3>P.N. Calilegua</h3>
+                        <p>Selva de Montaña</p>
+                    </div>
+                </div>
+
+                <div class="dest-card quebrada">
+                    <img src="images/pucara.jpg" alt="Tilcara">
+                    <div class="dest-overlay">
+                        <h3>Tilcara</h3>
+                        <p>Capital Arqueológica</p>
+                    </div>
+                </div>
+
+                <div class="dest-card quebrada tall">
+                    <img src="images/humahuaca.jpg"Humahuaca">
+                    <div class="dest-overlay">
+                        <h3>Humahuaca</h3>
+                        <p>Cultural / Monumento</p>
+                    </div>
+                </div>
+
+                <div class="dest-card quebrada">
+                    <img src="images/iruya.webp" alt="Iruya">
+                    <div class="dest-overlay">
+                        <h3>Iruya</h3>
+                        <p>Naturaleza / Paisaje</p>
+                    </div>
+                </div>
+
+                <div class="dest-card yungas tall">
+                    <img src="images/yala.jpg" alt="Yala">
+                    <div class="dest-overlay">
+                        <h3>Lagunas de Yala</h3>
+                        <p>Naturaleza / Pesca</p>
+                    </div>
+                </div>
+
+                <div class="dest-card puna">
+                    <img src="images/casabindo.jpg" alt="Casabindo">
+                    <div class="dest-overlay">
+                        <h3>Casabindo</h3>
+                        <p>Cultural / Toreo de la Vincha</p>
+                    </div>
+                </div>
+
+                <div class="dest-card yungas">
+                    <img src="images/jordan.jpeg" alt="Termas">
+                    <div class="dest-overlay">
+                        <h3>Termas de Jordán</h3>
+                        <p>Naturaleza / Aventrura</p>
+                    </div>
+                </div>
+
+                <div class="dest-card quebrada wide">
+                    <img src="images/cuestalipan.jpeg"
+                        alt="Cuesta de Lipan">
+                    <div class="dest-overlay">
+                        <h3>Cuesta de Lípan</h3>
+                        <p>Paisaje / Ruta a las Salinas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="price-section">
+            <h2 class="section-title">Tarifas Excursiones</h2>
+            <div class="table-wrapper">
+                <table class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Destino</th>
+                            <th>Región</th>
+                            <th>Duración</th>
+                            <th>Precio (ARS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Salinas Grandes</td>
+                            <td>Puna</td>
+                            <td>Full Day</td>
+                            <td>$40.000</td>
+                        </tr>
+                        <tr>
+                            <td>Iruya (desde Humahuaca)</td>
+                            <td>Quebrada</td>
+                            <td>Full Day</td>
+                            <td>$45.000</td>
+                        </tr>
+                        <tr>
+                            <td>Termas de Jordán</td>
+                            <td>Yungas</td>
+                            <td>2 Días</td>
+                            <td>$60.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Tu email aquí" required>
+                    <button type="submit" class="btn-primary">Suscribirme</button>
+                </form>
+            </div>
+
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/">Facebook</a>
+                    <a href="https://www.instagram.com/">Instagram</a>
+                    <a href="https://x.com/?lang=es">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <iframe width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-65.31%2C-24.19%2C-65.29%2C-24.17&amp;layer=mapnik"></iframe>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Turismo Explora - Alumno: Cristian</p>
+        </div>
+    </footer>
+</body>
+
+</html>
