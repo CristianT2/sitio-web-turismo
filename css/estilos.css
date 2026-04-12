@@ -447,3 +447,103 @@ header {
         font-size: 0.85rem;
     }
 }
+
+/* --- PUNTO 3: PÁGINA DE AGENCIAS (FLIP CARDS) --- */
+
+.agencias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Contenedor principal de la card */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px; /* Necesario para el efecto 3D */
+}
+
+/* Contenedor de las caras */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; /* Permite que los hijos vivan en el espacio 3D */
+}
+
+/* Efecto al pasar el mouse */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Estilo común para ambas caras */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Oculta la cara de atrás cuando se gira */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Cara de adelante */
+.flip-card-front {
+    background-color: var(--white);
+    color: var(--secondary-color);
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Cara de atrás (ya rotada 180 grados) */
+.flip-card-back {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* --- SISTEMA DE RATING (STARS) --- */
+.rating {
+    display: flex;
+    flex-direction: row-reverse; /* Truco para que las estrellas se pinten de izq a der */
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.rating input { display: none; }
+
+.rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Efecto al pasar el mouse y al seleccionar */
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* Animación cuando haces clic */
+.rating label:active {
+    transform: scale(0.9);
+}
