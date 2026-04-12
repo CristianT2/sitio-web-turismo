@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Turismo<span>Explora</span></h1>
+            </div>
+
+            <ul class="nav-links">
+                <li class="has-megamenu">
+                    <a href="#">Explorar ▼</a>
+                    <div class="megamenu">
+                        <div class="menu-column">
+                            <h3>Destinos</h3>
+                            <ul>
+                                <li><a href="#">Naturaleza</a></li>
+                                <li><a href="#">Cultura</a></li>
+                                <li><a href="#">Playas</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>Agencias</h3>
+                            <ul>
+                                <li><a href="#">Oficiales</a></li>
+                                <li><a href="#">Low Cost</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-column">
+                            <h3>Precios</h3>
+                            <ul>
+                                <li><a href="#">Paquetes</a></li>
+                                <li><a href="#">Promociones</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="destinos.html">Destinos</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/h6iLJE6KpRo?autoplay=1&mute=1&loop=1&playlist=h6iLJE6KpRo&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="hero-overlay">
+                <h2 class="animate-text">Descubre tu próximo destino</h2>
+                <p>Experiencias únicas en los rincones más bellos del mundo.</p>
+                <a href="#destinos" class="btn-primary">Ver Destinos</a>
+            </div>
+        </section>
+
+        <section id="destinos" class="container">
+            <h2 class="section-title">Destinos Destacados</h2>
+            <div class="destinos-grid">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/358457/pexels-photo-358457.jpeg" alt="Cataratas">
+                    <div class="card-info">
+                        <h3>Iguazú, Argentina</h3>
+                        <p>Naturaleza en estado puro.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg" alt="Playa">
+                    <div class="card-info">
+                        <h3>Caribe</h3>
+                        <p>Sol y arenas blancas.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/2161449/pexels-photo-2161449.jpeg" alt="Montaña">
+                    <div class="card-info">
+                        <h3>Alpes Suizos</h3>
+                        <p>Aventura en la nieve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-item">
+                <div class="counter-wrapper">
+                    <span class="counter-anim"></span><span>+</span>
+                </div>
+                <p>Visitantes Felices</p>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-title">Lo que dicen nuestros viajeros</h2>
+            <div class="carousel">
+                <input type="radio" name="slide" id="slide1" checked>
+                <input type="radio" name="slide" id="slide2">
+
+                <div class="slides">
+                    <div class="slide slide-1">
+                        <p>"¡Una experiencia increíble, la mejor agencia!"</p>
+                        <h4>- Juan Pérez</h4>
+                    </div>
+                    <div class="slide slide-2">
+                        <p>"El video del home me convenció de viajar."</p>
+                        <h4>- Ana García</h4>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Tu email aquí" required>
+                    <button type="submit" class="btn-primary">Suscribirme</button>
+                </form>
+            </div>
+
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <iframe width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-65.31%2C-24.19%2C-65.29%2C-24.17&amp;layer=mapnik"></iframe>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Turismo Explora - Alumno: Cristian</p>
+        </div>
+    </footer>
+</body>
+
+</html>

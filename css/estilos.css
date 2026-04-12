@@ -1,0 +1,289 @@
+/* 1. VARIABLES Y CONFIGURACIÓN BASE */
+:root {
+    --primary-color: #2a9d8f;
+    --secondary-color: #264653;
+    --accent-color: #e9c46a;
+    --text-color: #333;
+    --bg-color: #f4f4f9;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. HEADER Y MEGA-MENÚ */
+header {
+    background-color: var(--secondary-color);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 { color: var(--white); }
+.logo span { color: var(--primary-color); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links > li {
+    padding: 1rem;
+    position: relative;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+/* Lógica del Mega-menú */
+.megamenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--white);
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    border-radius: 8px;
+}
+
+.has-megamenu:hover .megamenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.menu-column h3 { color: var(--primary-color); margin-bottom: 10px; }
+.menu-column ul { list-style: none; }
+.menu-column a { color: var(--text-color); font-size: 0.9rem; }
+
+/* 3. HERO SECTION */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 80vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-video-container iframe {
+    width: 100vw;
+    height: 56.25vw; /* Relación 16:9 */
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-overlay {
+    text-align: center;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.animate-text {
+    font-size: 3rem;
+    animation: fadeInDown 1.5s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botones */
+.btn-primary {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: var(--transition);
+}
+
+.btn-primary:hover { background: #238b7f; transform: scale(1.05); }
+
+/* 4. DESTINOS (CARDS) */
+.container { padding: 4rem 5%; }
+.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+
+.destinos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 400px;
+    transition: var(--transition);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    transform: translateY(50px);
+    transition: var(--transition);
+}
+
+.card:hover img { transform: scale(1.1); }
+.card:hover .card-info { transform: translateY(0); }
+
+/* 5. CONTADOR ANIMADO */
+.stats {
+    background: var(--secondary-color);
+    color: white;
+    padding: 4rem;
+    text-align: center;
+}
+
+.counter-anim::after {
+    content: "0";
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    animation: count 3s forwards steps(5);
+}
+
+@keyframes count {
+    0% { content: "100"; }
+    25% { content: "200"; }
+    50% { content: "300"; }
+    75% { content: "400"; }
+    100% { content: "500"; }
+}
+
+/* 6. TESTIMONIOS (CARRUSEL CSS) */
+.testimonials { background: #eee; padding: 4rem 5%; text-align: center; }
+
+.carousel {
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide { min-width: 100%; padding: 2rem; }
+
+#slide1:checked ~ .slides { transform: translateX(0); }
+#slide2:checked ~ .slides { transform: translateX(-100%); }
+
+.carousel input { display: none; }
+
+.controls { margin-top: 20px; }
+.controls label {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+#slide1:checked ~ .controls label:nth-child(1),
+#slide2:checked ~ .controls label:nth-child(2) {
+    background: var(--primary-color);
+}
+
+/* 7. FOOTER */
+.main-footer {
+    background: var(--secondary-color);
+    color: white;
+    padding: 3rem 5% 1rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.newsletter-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.social-links a {
+    color: var(--accent-color);
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+}
