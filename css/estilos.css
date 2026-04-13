@@ -1,4 +1,4 @@
-/* 1. VARIABLES Y CONFIGURACIÓN BASE */
+/* --- 1. CONFIGURACIÓN BASE Y DARK MODE --- */
 :root {
     --primary-color: #2a9d8f;
     --secondary-color: #264653;
@@ -7,29 +7,36 @@
     --bg-color: #f4f4f9;
     --white: #ffffff;
     --transition: all 0.3s ease;
+    --border-color: #dddddd;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --white: #1e1e1e; 
+    --secondary-color: #0d1b1e;
+    --border-color: #333333;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* 2. HEADER Y MEGA-MENÚ */
+/* --- 2. HEADER Y NAVBAR --- */
 header {
     background-color: var(--secondary-color);
-    padding: 1rem 5%;
+    /* Aumentamos el padding para hacerlo más "largo" hacia abajo */
+    padding: 2rem 5%; 
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: var(--transition);
 }
 
 .navbar {
@@ -38,59 +45,115 @@ header {
     align-items: center;
 }
 
-.logo h1 { color: var(--white); }
+.logo h1 { 
+    /* Logo más grande */
+    font-size: 2.2rem; 
+    color: white; 
+}
 .logo span { color: var(--primary-color); }
 
 .nav-links {
     display: flex;
     list-style: none;
+    align-items: center;
 }
 
-.nav-links > li {
-    padding: 1rem;
-    position: relative;
+.nav-links li { 
+    /* Más separación entre los ítems */
+    padding: 0 25px; 
 }
 
 .nav-links a {
-    color: var(--white);
+    color: white;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600; /* Un poco más de grosor */
+    /* Letras más grandes */
+    font-size: 1.3rem; 
     transition: var(--transition);
 }
 
-/* Lógica del Mega-menú */
+/* --- LÓGICA DEL MEGA-MENÚ --- */
+.has-megamenu {
+    position: relative; /* Para que el menú se posicione respecto al link */
+}
+
 .megamenu {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--white);
+    transform: translateX(-50%) translateY(20px); /* Empieza un poco más abajo */
+    background-color: var(--white); /* Cambia con el Dark Mode */
     display: grid;
-    grid-template-columns: repeat(3, 200px);
+    grid-template-columns: repeat(2, 180px); /* Dos columnas */
     gap: 20px;
     padding: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    
+    /* Efecto de ocultar/mostrar */
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition);
-    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 1001;
 }
 
+/* Mostrar al pasar el mouse por el LI padre */
 .has-megamenu:hover .megamenu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
 
-.menu-column h3 { color: var(--primary-color); margin-bottom: 10px; }
-.menu-column ul { list-style: none; }
-.menu-column a { color: var(--text-color); font-size: 0.9rem; }
+/* Estilos de las columnas internas */
+.menu-column h3 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
 
-/* 3. HERO SECTION */
+.menu-column ul {
+    list-style: none;
+}
+
+.menu-column ul li {
+    padding: 5px 0 !important; /* Quitamos el padding lateral del navbar */
+}
+
+.menu-column a {
+    color: var(--text-color) !important; /* Usamos la variable de texto */
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+}
+
+.menu-column a:hover {
+    color: var(--primary-color) !important;
+    padding-left: 5px; /* Pequeña animación al hover */
+}
+
+/* El botón también debe crecer un poco para no quedar pequeño */
+#theme-toggle {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 8px 18px; 
+    border-radius: 25px;
+    font-size: 1.4rem;
+    transition: var(--transition);
+}
+
+#theme-toggle:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* --- 3. HERO SECTION (VIDEO FULL SCREEN) --- */
 .hero {
     position: relative;
-    width: 100%;
-    height: 80vh; 
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,65 +162,40 @@ header {
 
 .hero-video-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: -1;
-    pointer-events: none;
 }
 
 .hero-video-container iframe {
     width: 100vw;
-    height: 56.25vw; /* Relación 16:9 */
+    height: 56.25vw; /* 16:9 ratio */
     min-height: 100vh;
     min-width: 177.77vh;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1.3); /* Evita bordes negros */
+    pointer-events: none;
 }
 
 .hero-overlay {
     text-align: center;
-    color: var(--white);
+    color: white;
     background: rgba(0, 0, 0, 0.5);
     padding: 3rem;
     border-radius: 15px;
     backdrop-filter: blur(5px);
 }
 
-.animate-text {
-    font-size: 3rem;
-    animation: fadeInDown 1.5s ease;
-}
+.animate-text { font-size: 3rem; margin-bottom: 10px; }
 
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Botones */
-.btn-primary {
-    display: inline-block;
-    background: var(--primary-color);
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    transition: var(--transition);
-}
-
-.btn-primary:hover { background: #238b7f; transform: scale(1.05); }
-
-/* 4. DESTINOS (CARDS) */
+/* --- 4. DESTINOS GRID (3 COLUMNAS) --- */
 .container { padding: 4rem 5%; }
-.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--text-color); }
 
 .destinos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -166,135 +204,88 @@ header {
     border-radius: 15px;
     overflow: hidden;
     height: 400px;
-    transition: var(--transition);
+    background: var(--white);
+    border: 1px solid var(--border-color);
 }
 
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
+.card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.card:hover img { transform: scale(1.1); }
 
 .card-info {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 2rem;
+    bottom: 0; width: 100%;
+    padding: 1.5rem;
     background: linear-gradient(transparent, rgba(0,0,0,0.8));
     color: white;
-    transform: translateY(50px);
-    transition: var(--transition);
 }
 
-.card:hover img { transform: scale(1.1); }
-.card:hover .card-info { transform: translateY(0); }
-
-/* 5. CONTADOR ANIMADO */
+/* --- 5. STATS --- */
 .stats {
     background: var(--secondary-color);
     color: white;
-    padding: 4rem;
+    padding: 3rem;
     text-align: center;
 }
 
 .counter-anim::after {
-    content: "0";
-    font-size: 4rem;
+    content: "500";
+    font-size: 3rem;
     font-weight: bold;
     color: var(--accent-color);
-    animation: count 3s forwards steps(5);
 }
 
-@keyframes count {
-    0% { content: "100"; }
-    25% { content: "200"; }
-    50% { content: "300"; }
-    75% { content: "400"; }
-    100% { content: "500"; }
+/* --- 6. TESTIMONIOS --- */
+.testimonials {
+    background: var(--white);
+    padding: 4rem 5%;
+    text-align: center;
 }
 
-/* 6. TESTIMONIOS (CARRUSEL CSS) - ACTUALIZADO A 3 SLIDES */
-.testimonials { background: #f0f0f0; padding: 6rem 5%; text-align: center; }
-
-.carousel {
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida */
-}
-
-.slide { 
-    min-width: 100%; 
-    padding: 2rem; 
-}
-
-/* Lógica de movimiento: saltos de 100% */
-#slide1:checked ~ .slides { transform: translateX(0); }
-#slide2:checked ~ .slides { transform: translateX(-100%); }
-#slide3:checked ~ .slides { transform: translateX(-200%); } 
+.carousel { max-width: 800px; margin: auto; overflow: hidden; position: relative; }
+.slides { display: flex; transition: transform 0.5s ease; }
+.slide { min-width: 100%; padding: 20px; }
+.slide p { font-size: 1.2rem; font-style: italic; color: var(--text-color); }
 
 .carousel input { display: none; }
+#slide1:checked ~ .slides { transform: translateX(0); }
+#slide2:checked ~ .slides { transform: translateX(-100%); }
+#slide3:checked ~ .slides { transform: translateX(-200%); }
 
-.controls { margin-top: 20px; }
 .controls label {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 12px; height: 12px;
     background: #bbb;
     border-radius: 50%;
-    margin: 0 8px;
+    margin: 10px 5px;
     cursor: pointer;
-    transition: var(--transition);
 }
 
-/* Indicador de qué slide está activo */
 #slide1:checked ~ .controls label:nth-child(1),
 #slide2:checked ~ .controls label:nth-child(2),
-#slide3:checked ~ .controls label:nth-child(3) {
-    background: var(--primary-color);
-    transform: scale(1.2); 
-}
+#slide3:checked ~ .controls label:nth-child(3) { background: var(--primary-color); }
 
-/* 7. FOOTER */
-.main-footer {
-    background: var(--secondary-color);
-    color: white;
-    padding: 3rem 5% 1rem;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
+/* --- 7. FOOTER --- */
+.main-footer { background: var(--secondary-color); color: white; padding: 3rem 5%; }
+.footer-container { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 2rem; }
 
 .newsletter-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: none;
+    width: 100%; padding: 10px; margin-bottom: 10px;
+    border-radius: 5px; border: none; background: var(--white); color: var(--text-color);
 }
 
-.social-links a {
-    color: var(--accent-color);
-    margin-right: 15px;
-    text-decoration: none;
+.btn-primary {
+    background: var(--primary-color); color: white;
+    padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.8rem;
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 992px) {
+    .destinos-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-container { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .destinos-grid { grid-template-columns: 1fr; }
+    .animate-text { font-size: 2rem; }
 }
 
 
@@ -315,12 +306,12 @@ header {
 
 .filter-labels label {
     padding: 10px 25px;
-    background: #e0e0e0;
+    background: var(--white);
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
     transition: var(--transition);
-    color: var(--secondary-color);
+    color: var(--text-color);
 }
 
 /* Estado activo de los filtros */
@@ -415,12 +406,14 @@ header {
     overflow-x: auto; /* Scroll para celulares */
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid var(--border-color);
 }
 
 .responsive-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--white);
+    color: var(--text-color);
 }
 
 .responsive-table th {
@@ -436,7 +429,7 @@ header {
 }
 
 .responsive-table tbody tr:hover {
-    background-color: #f9f9f9;
+    background-color: rgba(42, 157, 143, 0.1);
     color: var(--primary-color);
 }
 
@@ -499,7 +492,17 @@ header {
 /* Cara de adelante */
 .flip-card-front {
     background-color: var(--white);
-    color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.flip-card-front h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.flip-card-front p {
+    opacity: 0.8;
 }
 
 .flip-card-front img {
@@ -724,19 +727,21 @@ header {
     margin-top: 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
 }
 
 .precios-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--white); 
+    color: var(--text-color);
     text-align: left;
 }
 
 .precios-table th, 
 .precios-table td {
     padding: 1.2rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .precios-table th {
@@ -752,7 +757,7 @@ header {
 }
 
 .precios-table tbody tr:hover {
-    background-color: rgba(42, 157, 143, 0.1); /* Color primario muy suave */
+    background-color: rgba(42, 157, 143, 0.15); /* Color primario muy suave */
     transform: scale(1.01); /* Efecto sutil de crecimiento */
 }
 
@@ -773,8 +778,8 @@ header {
     bottom: 125%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
-    color: white;
+    background-color: #111;
+    color: #fff;
     padding: 8px 12px;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -783,7 +788,8 @@ header {
     visibility: hidden;
     transition: opacity 0.3s;
     z-index: 10;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    border: 1px solid var(--primary-color);
 }
 
 /* La flechita del tooltip */
@@ -794,7 +800,7 @@ header {
     left: 50%;
     transform: translateX(-50%);
     border: 6px solid transparent;
-    border-top-color: #333;
+    border-top-color: var(--primary-color);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s;
@@ -826,14 +832,14 @@ header {
 /* Estilo de los Labels como botones modernos */
 .blog-filters label {
     padding: 10px 22px;
-    background-color: #f0f0f0;
-    color: #555;
+    background-color: var(--white);
+    color: var(--text-color);
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid var(--border-color);
 }
 
 .blog-filters label:hover {
@@ -887,8 +893,8 @@ header {
 
 /* 3. TARJETAS DE NOTICIAS */
 .post {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
+    background: transparent;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -913,9 +919,9 @@ header {
 .post:hover img { transform: scale(1.05); }
 
 /* Tipografía */
-.post h2 { font-size: 2.2rem; margin: 10px 0; color: #222; line-height: 1.1; }
-.post h3 { font-size: 1.4rem; margin: 8px 0; color: #333; }
-.post p { font-size: 0.95rem; line-height: 1.6; color: #555; margin-bottom: 10px; flex-grow: 1; }
+.post h2 { font-size: 2.2rem; margin: 10px 0; color: var(--text-color); line-height: 1.1; }
+.post h3 { font-size: 1.4rem; margin: 8px 0; color: var(--text-color) }
+.post p { font-size: 0.95rem; line-height: 1.6; color: var(--text-color); margin-bottom: 10px; flex-grow: 1; }
 
 .post .tag {
     background: #f1f1f1;
@@ -944,13 +950,14 @@ header {
 .comments-section {
     margin-top: 60px;
     padding: 30px;
-    background: #fdfdfd;
+    background: var(--white);
     border-radius: 15px;
+    border: 1px solid var(--border-color);
 }
 
 .comments-section h3 {
     margin-bottom: 25px;
-    color: var(--secondary-color, #264653);
+    color: var(--text-color);
     border-bottom: 2px solid var(--primary-color, #2a9d8f);
     display: inline-block;
 }
@@ -958,13 +965,14 @@ header {
 .comment {
     display: flex;
     gap: 20px;
-    background: #ffffff;
+    background: var(--bg-color);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 12px;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     box-shadow: 0 4px 6px rgba(0,0,0,0.03);
     transition: all 0.3s ease;
+    color: var(--text-color);
 }
 
 .comment:hover {
@@ -982,8 +990,8 @@ header {
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 2px #eee;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--primary-color);
 }
 
 .avatar-css::before {
@@ -1012,8 +1020,8 @@ header {
 .avatar-css.user-3 { filter: hue-rotate(180deg); }
 .avatar-css.user-4 { filter: hue-rotate(240deg); }
 
-.comment-body strong { display: block; font-size: 1rem; color: var(--secondary-color, #264653); }
-.comment-body p { margin: 4px 0 0; font-size: 0.95rem; color: #444; }
+.comment-body strong { display: block; font-size: 1rem; color: var(--primary-color); }
+.comment-body p { margin: 4px 0 0; font-size: 0.95rem; color: var(--text-color) }
 
 /* RESPONSIVIDAD */
 @media (max-width: 992px) {
